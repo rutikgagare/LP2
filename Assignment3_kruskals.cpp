@@ -32,7 +32,6 @@ class DisjointSet{
         int ulp_u = findUPar(u);
         int ulp_v = findUPar(v);
 
-        // i.e is the case for cycle
         if(ulp_u == ulp_v){
             return;
         }
