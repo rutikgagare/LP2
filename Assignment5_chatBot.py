@@ -49,3 +49,6 @@ chatbot = Chat(patterns, reflections)
 # Start the chatbot
 print("Hello! I'm Chatbot. How can I help you today?")
 chatbot.converse()
+
+
+# if pip not  working use command py -m pip install nltk

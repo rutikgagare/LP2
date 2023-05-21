@@ -4,6 +4,7 @@ using namespace std;
 
 void prims(vector<int> &visited,vector<pair<int,int>> &mst, vector<pair<int,int>> adjList[]){
 
+    // min heap format
     priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>> pq;
 
     // start node
@@ -50,14 +51,19 @@ int main(){
     
     vector<pair<int,int>> adjList[v];
 
+    int p,q,w;
     for(int i = 0; i<e; i++){
-        int u,v,w;
-        cin>>u>>v>>w;
-        adjList[u].push_back({v,w});
-        adjList[v].push_back({u,w});
+        // p starting node of the edge and q is the ending node
+        // w weight of the edge
+        cin>>p>>q>>w;
+        adjList[p].push_back({q,w});
+        adjList[q].push_back({p,w});
     }
 
+    // for avoidance of cyclic path
     vector<int> visited(v,0);
+
+    // edges which will be the part of mst, their start and end nodes
     vector<pair<int,int>> mst;
 
     prims(visited,mst,adjList);
