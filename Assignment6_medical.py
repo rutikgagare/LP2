@@ -16,7 +16,11 @@ def process_input(symptoms):
         return "No matching condition found."
 
     # Display recommendations for matched conditions
-    recommendations = [rule["recommendation"] for rule in matching_rules]
+    recommendations = []
+    for rule in matching_rules:
+        recommendations.append(rule["recommendation"])
+
+    # recommendations = [rule["recommendation"] for rule in matching_rules]
     return ", ".join(recommendations)
 
 # User input example

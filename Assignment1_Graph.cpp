@@ -3,9 +3,11 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void bfsTraversal(map<int,list<int>> adjList,vector<int> &visited,int node){
+void bfsTraversal(vector<int> adjList[],vector<int> &visited,int node){
     queue<int> q;
     q.push(node);
+
+    
     visited[node] = 1;
 
     while(!q.empty()){
@@ -22,7 +24,7 @@ void bfsTraversal(map<int,list<int>> adjList,vector<int> &visited,int node){
     }
 }
 
-void dfsTraversal(map<int,list<int>> adjList,vector<int> & visited,int node){
+void dfsTraversal(vector<int> adjList[],vector<int> & visited,int node){
     visited[node] = 1;
     cout<<node<<" ";
     for(auto i: adjList[node]){
@@ -35,7 +37,6 @@ void dfsTraversal(map<int,list<int>> adjList,vector<int> & visited,int node){
 int main(){
 
     // take input for graph
-    map<int,list<int>> adjList;
 
     int v,e;
     cout<<"Enter Number of Vertices : ";
@@ -44,11 +45,13 @@ int main(){
     cout<<"Enter Number of edges : ";
     cin>>e;
 
+    vector<int> adjList[v];
+
+    int p,q;
     for(int i = 0; i<e; i++){
-        int u,v;
-        cin>>u>>v;
-        adjList[u].push_back(v);
-        adjList[v].push_back(u);
+        cin>>p>>q;
+        adjList[p].push_back(q);
+        adjList[q].push_back(p);
     }
 
 

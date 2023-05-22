@@ -4,9 +4,10 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void graphColoring(vector<int> adjList[],int &chromaticNo,vector<int> &color){
+void graphColoring(vector<int> adjList[],int &chromaticNo,vector<int> &color,vector<int> &visited){
     queue<int> q;
     q.push(0);
+    visited[0] = 1;
 
     while(!q.empty()){
         int currNode = q.front();
@@ -19,12 +20,14 @@ void graphColoring(vector<int> adjList[],int &chromaticNo,vector<int> &color){
                 if(color[i] != -1){
                     availableColors[color[i]] = false;
                 }
-                else{
+                else if(!visited[i]){
                     q.push(i);
+                    visited[i] = 1;
                 }
             }
 
             int availableColor = -1;
+            
             for(int i = 0; i<chromaticNo; i++){
                 if(availableColors[i] == true){
                     availableColor = i;
@@ -49,7 +52,7 @@ int main(){
     cout<<"Enter number of vertices : ";
     cin>>v;
 
-    cout<<"Enter number of edged : ";
+    cout<<"Enter number of edges : ";
     cin>>e;
 
     vector<int> adjList[v];
@@ -62,8 +65,9 @@ int main(){
 
     int chromaticNo = 0;
     vector<int> color(v,-1);
+    vector<int> visited(v,0);
 
-    graphColoring(adjList,chromaticNo,color);
+    graphColoring(adjList,chromaticNo,color,visited);
 
     cout<<"Chromatic Number : "<<chromaticNo<<endl;
     for(auto i:color){

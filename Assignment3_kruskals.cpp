@@ -28,7 +28,7 @@ class DisjointSet{
         // return findUPar(parent[node]);
     }
 
-    void unioByRank(int u,int v){
+    void unionByRank(int u,int v){
         int ulp_u = findUPar(u);
         int ulp_v = findUPar(v);
 
@@ -83,7 +83,7 @@ int main(){
 
         if(ds.findUPar(startNode) != ds.findUPar(endNode)){
             mst.push_back({startNode,endNode});
-            ds.unioByRank(startNode,endNode);
+            ds.unionByRank(startNode,endNode);
         }
     }
 
